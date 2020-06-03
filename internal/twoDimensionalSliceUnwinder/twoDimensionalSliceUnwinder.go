@@ -53,7 +53,7 @@ func composeTwoDimensionalSlice(args []string) [][]int {
 
 	n, err := strconv.Atoi(args[:1][0])
 
-	if err != nil {
+	if err != nil || 1 == n {
 		fmt.Printf("The input arg %v is incorrect", n)
 		fmt.Println()
 
