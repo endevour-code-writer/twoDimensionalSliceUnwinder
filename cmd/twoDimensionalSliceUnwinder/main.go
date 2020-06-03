@@ -8,5 +8,7 @@ import (
 
 func main() {
 	args := os.Args[1:]
-	fmt.Println(twoDimensionalSliceUnwinder.Unwind(args))
+	unwinded := twoDimensionalSliceUnwinder.Unwind(args)
+	fmt.Printf("It was unwinded to : %v", unwinded)
+	fmt.Println()
 }
