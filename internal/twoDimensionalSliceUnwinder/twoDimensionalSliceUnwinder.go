@@ -14,6 +14,38 @@ func Unwind(args []string) []int {
 	return unwind
 }
 
+func unwindTwoDimensionalSlice(twoDimensional [][]int, unwind []int) ([][]int, []int) {
+	head, tail := twoDimensional[0], twoDimensional[1:]
+	unwind = append(unwind, head...)
+
+	slicedValues := make([][]int, len(tail[0]))
+
+	for index, sliceValue := range tail {
+		for i := range sliceValue {
+
+			if len(slicedValues[i]) <= 0 {
+				slicedValues[i] = make([]int, len(tail))
+			}
+
+			slicedValues[i][index] = sliceValue[i]
+		}
+	}
+
+	for i := len(slicedValues)/2 - 1; i >= 0; i-- {
+		opp := len(slicedValues) - 1 - i
+		slicedValues[i], slicedValues[opp] = slicedValues[opp], slicedValues[i]
+	}
+
+	if 1 == len(slicedValues) {
+		unwind = append(unwind, slicedValues[0]...)
+
+		return slicedValues, unwind
+	}
+
+	return unwindTwoDimensionalSlice(slicedValues, unwind)
+
+}
+
 func composeTwoDimensionalSlice(args []string) [][]int {
 	if 0 == len(args) {
 		return createDefaultTwoDimensionalSlice()
@@ -39,7 +71,7 @@ func composeTwoDimensionalSlice(args []string) [][]int {
 		matrix[i] = rows
 	}
 
-	fmt.Printf("The matrix %v was created: ", matrix)
+	fmt.Printf("The matrix %v was created", matrix)
 	fmt.Println()
 
 	return matrix
