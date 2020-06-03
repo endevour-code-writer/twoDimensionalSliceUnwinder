@@ -6,4 +6,4 @@ Build with `./scripts/build.sh`
 
 # Running
 Run `./bin/twoDimensionalSliceUnwinder` with passing number to create matrix. 
-If you don't do it te default 2D slice will be created and unwind
+Otherwise, a default slice will be generated and unwound
